@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import '../styles/Transaction.css'
 class Transaction extends Component {
     render(){
         return(
             <div className='transaction'>
-                vendor: {this.props.transaction.vendor} - category: {this.props.transaction.category} | {this.props.transaction.amount}₪
+                <span>{this.props.transaction.vendor}</span>
+                <span>{this.props.transaction.category}</span>
+                <span>{this.props.transaction.amount}₪</span>
             </div>
         );
     }

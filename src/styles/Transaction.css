@@ -1,0 +1,13 @@
+.transaction {
+    display: grid;
+    margin: 20px;
+    background-color: lightgrey;
+    grid-template-columns: 3fr 3fr 3fr;
+}
+
+.transaction span {
+    display: inline-block;
+    text-align: center;
+    padding: 10px;
+    font-size: 17px;
+}

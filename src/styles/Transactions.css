@@ -1,0 +1,13 @@
+.transaction-header {
+    display: grid;
+    margin: 20px;
+    background-color: #4244a3;
+    grid-template-columns: auto auto auto;
+}
+
+.transaction-header span {
+    display: inline-block;
+    text-align: center;
+    padding: 10px;
+    font-size: 17px;
+}
