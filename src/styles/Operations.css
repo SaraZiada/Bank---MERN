@@ -1,0 +1,17 @@
+#newOperatorForm {
+    padding: 25px;
+    display: grid;
+    justify-content: center;
+    grid-gap: 20px;
+}
+
+#newOperatorForm input {
+    height: 20px;
+    font-size: 17px;
+}
+
+.Operations-buttons button {
+    margin: 10px;
+    height: 25px;
+    font-size: 17px;
+}
