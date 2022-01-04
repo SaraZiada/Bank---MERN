@@ -35,4 +35,18 @@ router.delete('/transaction', function(req, res) {
     })
 })
 
+router.get('/transactionsByCategory', function(req, res) {
+    Transaction.aggregate([{
+        $group: {
+            _id: "$category",
+            totalSum: {
+                $sum: "$amount"
+            }
+        }
+    }, { $sort: { totalSum: -1 } }], function(err, results) {
+        res.send(results);
+    })
+
+})
+
 module.exports = router

@@ -1,0 +1,20 @@
+.category {
+    display: grid;
+    grid-template-columns: auto auto;
+    margin: 20px;
+    background-color: lightgrey;
+}
+
+.header {
+    display: grid;
+    grid-template-columns: auto auto;
+    margin: 20px;
+    background-color: #4244a3;
+}
+
+span {
+    display: inline-block;
+    text-align: center;
+    padding: 10px;
+    font-size: 17px;
+}

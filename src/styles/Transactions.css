@@ -1,8 +1,9 @@
 .transaction-header {
     display: grid;
     margin: 20px;
-    background-color: #4244a3;
-    grid-template-columns: auto auto auto;
+    background-color: #7476df;
+    grid-template-columns: 3fr 3fr 3fr 1fr;
+    font-weight: bold;
 }
 
 .transaction-header span {

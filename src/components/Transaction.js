@@ -13,8 +13,8 @@ class Transaction extends Component {
             <div className='transaction'>
                 <span>{this.props.transaction.vendor}</span>
                 <span>{this.props.transaction.category}</span>
-                <span>{this.props.transaction.amount}</span>
-                <button id="delete" onClick={this.deleteTransaction}>delete</button>
+                <span  style = { this.props.transaction.amount > 0 ? { backgroundColor:'lightgreen'} :  { backgroundColor:'crimson'} }>{this.props.transaction.amount}</span>
+                <button id="delete" onClick={this.deleteTransaction}>DELETE</button>
             </div>
         );
     }

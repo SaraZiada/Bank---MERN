@@ -11,3 +11,8 @@
     padding: 10px;
     font-size: 17px;
 }
+
+#delete {
+    background-color: rgb(218, 86, 86);
+    color: white;
+}

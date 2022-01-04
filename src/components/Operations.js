@@ -29,7 +29,13 @@ class Operations extends Component {
     }
 
     withdraw = () =>{
-        this.props.addOperation({amount: this.state.amount*-1, category:this.state.category, vendor: this.state.vendor})
+        let error = this.validateInputs()
+        if(error.length==0){
+            this.props.addOperation({amount: this.state.amount*-1, category:this.state.category, vendor: this.state.vendor})
+        }
+         else{
+             alert(error)
+         }
     }
     validateInputs(){
         let msg =""
@@ -38,7 +44,7 @@ class Operations extends Component {
         }
         if(this.state.vendor.length==0){
             msg += "Enter Vendor\n"
-        }if(this.state.amount < 0){
+        }if(this.state.amount <= 0){
             msg +="Enter a Positive number for Amount"
         }
         return msg;
