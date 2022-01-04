@@ -5,7 +5,7 @@ class Transaction extends Component {
         super()
     }
     deleteTransaction = () => {
-        this.props.deleteTransaction(this.props.transaction.id)
+        this.props.deleteTransaction(this.props.transaction._id)
     }
     render(){
         return(

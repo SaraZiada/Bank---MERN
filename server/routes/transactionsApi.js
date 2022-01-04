@@ -7,27 +7,30 @@ router.get('/transactions', function(req, res) {
         res.send(transactions)
     })
 })
-router.post('/transaction', function(req, res) {
+router.post('/transaction', async function(req, res) {
     let transaction = req.body
+
     let vendor = transaction.vendor
     let category = transaction.category
     let amount = transaction.amount
+
     let newTransaction = new Transaction({
         vendor: vendor,
         category: category,
         amount: amount
     })
-    newTransaction.save().then(function(addedTransaction) { console.log(addedTransaction) })
-    res.send()
+
+    let toReturn = await newTransaction.save()
+    res.send(toReturn)
 
 })
 router.delete('/transaction', function(req, res) {
     let id = req.body.id
-    Transaction.deleteOne({ _id: id }, function(err) {
+    Transaction.findByIdAndDelete(id, function(err) {
         if (err) {
-            console.log(err)
+            res.send(false)
         } else {
-            res.end('success');
+            res.send(true);
         }
     })
 })

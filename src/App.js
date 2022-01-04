@@ -5,17 +5,13 @@ import { BrowserRouter as Router,Routes,Route} from 'react-router-dom'
 import Transactions from './components/Transactions';
 import BreakDown from './components/Breakdown';
 import Operations from './components/Operations';
+import $ from 'jquery';
 
 class App extends Component{
   constructor(){
     super()
     this.state={
-      transactions: [
-      { id:"1", amount: 3200, vendor: "Elevation", category: "Salary" },
-      { id:"2", amount: -7, vendor: "Runescape", category: "Entertainment" },
-      { id:"3", amount: -20, vendor: "Subway", category: "Food" },
-      { id:"4", amount: -98, vendor: "La Baguetterie", category: "Food" }
-      ],
+      transactions:[],
       balance: 0
     }
   }
@@ -24,28 +20,36 @@ class App extends Component{
     this.state.transactions.forEach(t => sum += t.amount)
     this.setState({balance : sum})
   }
-  componentDidMount(){
-    this.setBalance()
-    // this.setState({balance : this.setBalance()})
+  async componentDidMount(){
+    this.initTransactions()
   }
-  addOperation = (operation) => {
-    let oldLength ,newLength;
+
+  initTransactions = async () => {
+    let transactions = await $.get('http://localhost:8888/transactions')
+    this.setState({transactions},function(){
+      this.setBalance()
+    })
+  }
+  addOperation = async (operation) => {
+
+    let newOperation = await $.post('http://localhost:8888/transaction',operation)
     let transactions = [...this.state.transactions]
-    oldLength = transactions.length
-    transactions.push(operation)
-    newLength = transactions.length
+    transactions.push(newOperation)
     this.setState({transactions: transactions},function(){
+      console.log(this.state.transactions)
       this.setBalance()
     })
   }
 
-  deleteTransaction = (id) => {
-    let transactions = [...this.state.transactions]
-    const indx = transactions.findIndex(t => t.id === id);
-    transactions.splice(indx, indx >= 0 ? 1 : 0);
-    this.setState({transactions: transactions},function(){
-      this.setBalance()
+  deleteTransaction = async (id) => {
+    fetch('http://localhost:8888/transaction', {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ id: id })
     })
+      .then(res => res.json())
+      .then(result => {this.initTransactions()})
+
 
   }
   render(){

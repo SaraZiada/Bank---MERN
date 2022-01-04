@@ -10,7 +10,7 @@ class Transactions extends Component {
                     <span>Category</span>
                     <span>Amount (₪)</span>
                 </div>
-                {this.props.transactions.map(t => <Transaction key={t.id} transaction={t} deleteTransaction={this.props.deleteTransaction}/>)}
+                {this.props.transactions.map(t => <Transaction key={t._id} transaction={t} deleteTransaction={this.props.deleteTransaction}/>)}
             </div>
         );
     }
